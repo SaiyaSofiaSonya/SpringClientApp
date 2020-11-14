@@ -44,7 +44,7 @@ public class UserInfoDAO { //Вынесена логика с работой б�
 
 
 // Make the HTTP POST request, marshaling the request to JSON, and the response to a String
-        ResponseEntity<String> responseEntity = restTemplate.exchange("http://localhost:8888/api/userinfo", HttpMethod.POST, requestEntity, String.class);
+        ResponseEntity<String> responseEntity = restTemplate.exchange("http://localhost:8888/AppServer2_war_exploded/api", HttpMethod.POST, requestEntity, String.class);
         String result = responseEntity.getBody();
 
 

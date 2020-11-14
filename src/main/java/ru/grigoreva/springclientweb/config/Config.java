@@ -25,6 +25,9 @@ public class Config implements WebMvcConfigurer {
         this.applicationContext = applicationContext;
     }
 
+   @PostConstruct
+
+
     @Bean // используется для настройки шаблонизатора Thymeleaf
     public SpringResourceTemplateResolver templateResolver() {
         SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();

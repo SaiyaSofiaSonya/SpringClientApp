@@ -1,11 +1,14 @@
 package ru.grigoreva.springclientweb.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.grigoreva.springclientweb.dao.UserInfoDAO;
 import ru.grigoreva.springclientweb.models.User;
+
+import java.util.Properties;
 
 
 @Controller //анологичен @Component, @ComponentScan используется для создания Bean
@@ -13,11 +16,18 @@ import ru.grigoreva.springclientweb.models.User;
 public class UserInfoController {
 
         private final UserInfoDAO userInfoDAO;
+        private final ApplicationContext applicationContext;
 
         @Autowired //Внедрение userinfodao в контроллер
-        public UserInfoController(UserInfoDAO userInfoDAO) {
+        public UserInfoController(UserInfoDAO userInfoDAO, ApplicationContext applicationContext) {
             this.userInfoDAO = userInfoDAO;
+            this.applicationContext = applicationContext;
         }
+         @Resource(name="credentialsServer")
+         @Qualifier("applicationContext")
+         private Properties host;
+         private Properties login;
+         private Properties password;
 
 
         @GetMapping("/new")  //Возвращает страницу new.html  пользователю при переходе /userinfo/new, метод get
